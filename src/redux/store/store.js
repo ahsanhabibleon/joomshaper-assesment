@@ -16,7 +16,8 @@ const myStore = createStore(
 
 myStore.subscribe(() => {
     saveState({
-        users: myStore.getState().users
+        users: myStore.getState().users,
+        photos: myStore.getState().photos,
     })
 })
 

@@ -1,14 +1,10 @@
-import counterReducer from './counter'
-import Todos from './todos'
-import Users from './users'
-import loggedInReducer from './isLogged'
+import userReducers from './userReducer'
+import photoReducer from './photosReducer'
 import { combineReducers } from 'redux'
 
 const rootReducers = combineReducers({
-    counter: counterReducer,
-    loggedIn: loggedInReducer,
-    todos: Todos,
-    users: Users
+    users: userReducers,
+    photos: photoReducer
 })
 
 export default rootReducers

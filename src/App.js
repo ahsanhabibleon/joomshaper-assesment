@@ -1,10 +1,12 @@
-import Users from "./components/Users/Users";
+import Canvas from "./components/Layout/Canvas/Canvas";
+import LeftSidebar from "./components/Layout/LeftSideBar/LeftSidebar";
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <Users />
+      <LeftSidebar />
+      <Canvas />
     </div>
   );
 }
