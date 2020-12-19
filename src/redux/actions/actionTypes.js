@@ -1,0 +1,10 @@
+export const INCREMENT = "INCREMENT"
+export const DECREMENT = "DECREMENT"
+export const SIGNED_IN = "SIGNED_IN"
+export const ADD_ITEM = "addItem"
+export const REMOVE_ITEM = 'removeItem'
+export const TASK_COMPLETED = 'taskCompleted'
+export const FETCH_PHOTO = 'fetchPhoto'
+export const FETCH_USERS_REQUEST = 'fetchUsersRequest'
+export const FETCH_USERS_SUCCESS = 'fetchUsersSuccess'
+export const FETCH_USERS_FAILURE = 'fetchUsersFailure'
