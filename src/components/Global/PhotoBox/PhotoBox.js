@@ -41,7 +41,7 @@ const Box = ({ name, imgSrc, imgId, imgAlt }) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
                 // alert(`You dropped ${imgSrc} into ${dropResult.name}!`);
-                dispatch(addNewPhotoToCanvas(imgSrc, imgId))
+                dispatch(addNewPhotoToCanvas(imgSrc))
             }
         },
         collect: (monitor) => ({

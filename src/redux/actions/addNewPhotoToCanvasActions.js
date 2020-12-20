@@ -1,10 +1,10 @@
 import * as actions from './actionTypes'
 
-export const addNewPhotoToCanvas = (imgSrc, id) => {
+export const addNewPhotoToCanvas = (imgSrc) => {
     return {
         type: actions.ADD_NEW_PHOTO_TO_CANVAS,
         payload: {
-            imgSrc, id
+            imgSrc
         }
     }
 }

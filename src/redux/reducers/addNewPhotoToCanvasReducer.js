@@ -5,7 +5,7 @@ const canvasPhotoReducer = (state = [], action) => {
             return [
                 ...state,
                 {
-                    id: action.payload.id,
+                    id: new Date().getTime(),
                     imgSrc: action.payload.imgSrc
                 }
             ]

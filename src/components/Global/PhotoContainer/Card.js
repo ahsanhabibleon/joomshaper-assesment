@@ -1,15 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemCard } from '../../../itemTypes';
 import { createUseStyles } from 'react-jss'
-const style = {
-    border: '1px dashed gray',
-    padding: '0.5rem 1rem',
-    marginBottom: '.5rem',
-    backgroundColor: 'white',
-    cursor: 'move',
-};
-
+import PotoSettings from './PhotoSettings'
+import { useDispatch } from 'react-redux'
+import { removePhotoFromCanvas } from '../../../redux/actions/addNewPhotoToCanvasActions'
 
 const useStyles = createUseStyles({
     imgContainer: {
@@ -18,7 +13,46 @@ const useStyles = createUseStyles({
     },
     img: {
         width: '100%'
-    }
+    },
+    btnContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        background: 'rgba(74,82,87, .8)',
+        padding: '1rem 0',
+        borderRadius: 20,
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        opacity: 0,
+        visibility: 'hidden',
+        transition: 'opacity .5s',
+    },
+    btn: {
+        padding: " 0 2rem",
+        background: 'transparent',
+        border: 'none',
+        display: 'block',
+        outline: 'none',
+        cursor: 'pointer',
+        '& img': {
+            display: 'block'
+        },
+        '&:first-child': {
+            borderRight: '1px solid white'
+        }
+    },
+    photoSettingsModal: {
+        position: 'absolute',
+        top: 80,
+        left: 50
+    },
+    editableImageBlock: {
+        position: 'relative',
+        '&:hover $btnContainer': {
+            opacity: 1,
+            visibility: 'visible',
+        }
+    },
 })
 export const Card = ({ id, imgSrc, index, moveCard }) => {
     const classes = useStyles()
@@ -72,9 +106,42 @@ export const Card = ({ id, imgSrc, index, moveCard }) => {
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
+
+    const dispatch = useDispatch()
+
+    const deletePhoto = (id) => {
+        if (window.confirm("Do you realy want to delete this photo?")) {
+            dispatch(removePhotoFromCanvas(id))
+        }
+    }
+    const openPhotoSettings = (id) => {
+        setModalOpen(!modalOpen)
+    }
+
+    const [modalOpen, setModalOpen] = useState(false)
+
+    const setModalStatus = (payload) => {
+        setModalOpen(payload)
+    }
+
     return (
-        <div className={classes.imgContainer} ref={ref} style={{ ...style, opacity }}>
-            <img className={classes.img} src={imgSrc} alt="" />
+        <div className={classes.editableImageBlock}>
+            <div className={classes.imgContainer} ref={ref} style={{ opacity }}>
+                <img className={classes.img} src={imgSrc} alt="" />
+            </div>
+            <div className={classes.btnContainer}>
+                <button className={classes.btn} onClick={() => openPhotoSettings(id)}>
+                    <img src="/settings.svg" alt="" />
+                </button>
+                <button className={classes.btn} onClick={() => deletePhoto(id)}>
+                    <img src="/delete.svg" alt="" />
+                </button>
+            </div>
+
+            {
+                modalOpen && <PotoSettings isModalOpen={modalOpen} getModalStatus={setModalStatus} />
+            }
+
         </div>
     );
 };
