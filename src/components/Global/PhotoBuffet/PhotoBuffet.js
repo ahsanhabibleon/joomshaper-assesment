@@ -1,8 +1,36 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchPhotos } from '../../../redux/actions/photoActions'
+import { createUseStyles } from 'react-jss'
+import PhotoBox from '../PhotoBox/PhotoBox'
+
+const useStyles = createUseStyles({
+    photoBuffet: {
+        width: '100%',
+        height: '100%',
+        overflowX: 'hidden',
+        padding: '0 2rem'
+    },
+    photoSingle: {
+        margin: {
+            bottom: 10
+        },
+        cursor: 'grab'
+    },
+    figure: {
+        margin: 0,
+        borderRadius: 8,
+        border: '2px solid #DDE2E8',
+        overflow: 'hidden'
+    },
+    img: {
+        width: '100%',
+        display: 'block'
+    }
+})
 
 function PhotoBuffet({ galleryPhotos, fetchPhotos }) {
+    const classes = useStyles()
     useEffect(() => {
         fetchPhotos()
     }, [fetchPhotos])
@@ -12,13 +40,9 @@ function PhotoBuffet({ galleryPhotos, fetchPhotos }) {
     ) : galleryPhotos.error ? (
         <h2>{galleryPhotos.error}</h2>
     ) : (
-                <div className="PhotoBuffet">
+                <div className={classes.photoBuffet}>
                     { galleryPhotos.photos.map(photo => (
-                        <div className="PhotoBuffet__photo" key={photo.char_id}>
-                            <figure className="PhotoBuffet__figure">
-                                <img src={photo.img} alt={photo.name} />
-                            </figure>
-                        </div>
+                        <PhotoBox name="Glass" key={photo.char_id} imgSrc={photo.img} imgAlt={photo.name} imgId={photo.char_id} />
                     ))}
                 </div>
             )
