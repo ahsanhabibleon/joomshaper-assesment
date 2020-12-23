@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import update from 'immutability-helper';
 import CanvasImgCard from './CanvasImgCard';
 import { useSelector } from 'react-redux'
-
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles({
@@ -18,15 +17,15 @@ const useStyles = createUseStyles({
         padding: 15
     },
 })
+
 const PhotoContainer = () => {
     const classes = useStyles()
     const canvasPhotos = useSelector(state => state.canvasPhotos)
+    const [cards, setCards] = useState(canvasPhotos);
 
     useEffect(() => {
         setCards(canvasPhotos)
     }, [canvasPhotos])
-
-    const [cards, setCards] = useState(canvasPhotos);
 
     const moveCard = useCallback((dragIndex, hoverIndex) => {
         const dragCard = cards[dragIndex];

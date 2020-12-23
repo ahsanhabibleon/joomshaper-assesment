@@ -6,14 +6,12 @@ export const fetchPhotoRequest = () => {
         type: actions.FETCH_PHOTO_REQUEST
     }
 }
-
 export const fetchPhotoSuccess = photos => {
     return {
         type: actions.FETCH_PHOTO_SUCCESS,
         payload: photos
     }
 }
-
 export const fetchPhotoFailure = error => {
     return {
         type: actions.FETCH_PHOTO_FAILURE,

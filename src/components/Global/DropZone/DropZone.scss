@@ -14,20 +14,22 @@
   border: 0.1rem dashed gray;
   border-radius: 8px;
   padding-top: 20vh;
+  &__initial {
+    font-size: 40px;
+    height: 100%;
+    text-transform: capitalize;
+  }
   &.is-active {
     visibility: visible;
     opacity: 0.8;
   }
 }
+
 .dropzone {
   position: relative;
   min-height: calc(100vh - 160px);
   padding: 15px;
-}
-.dropzone__album-wrapper {
-  height: 100%;
-}
-.dropbox__initial {
-  font-size: 40px;
-  height: 100%;
+  &__album-wrapper {
+    height: 100%;
+  }
 }

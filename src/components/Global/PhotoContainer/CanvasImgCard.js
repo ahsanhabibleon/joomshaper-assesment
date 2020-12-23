@@ -1,13 +1,20 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import PotoSettings from './PhotoSettings'
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemCard } from '../../../itemTypes';
-import PotoSettings from './PhotoSettings'
 import { useDispatch } from 'react-redux'
 import { removePhotoFromCanvas } from '../../../redux/actions/addNewPhotoToCanvasActions'
 import './CanvasImgCard.scss'
 
 const CanvasImgCard = ({ id, imgSrc, filterSettings, imgIndex, index, moveCard }) => {
+    const dispatch = useDispatch()
+    const [modalOpen, setModalOpen] = useState(false)
     const ref = useRef(null);
+
+    useEffect(() => {
+        onToggleForbidDrag()
+    }, [modalOpen])
+
     const [, drop] = useDrop({
         accept: ItemCard.CARD,
         hover(item, monitor) {
@@ -50,38 +57,26 @@ const CanvasImgCard = ({ id, imgSrc, filterSettings, imgIndex, index, moveCard }
 
     drag(drop(ref));
 
-
-    const dispatch = useDispatch()
-
-    const [modalOpen, setModalOpen] = useState(false)
-
     const deletePhoto = (id) => {
         if (window.confirm("Do you realy want to delete this photo?")) {
             dispatch(removePhotoFromCanvas(id))
         }
     }
-
     const openPhotoSettings = () => {
         setModalOpen(!modalOpen)
     }
-
     const setModalStatus = (payload) => {
         setModalOpen(payload)
     }
-
     const onToggleForbidDrag = useCallback(() => {
         !modalOpen ? setForbidDrag(false) : setForbidDrag(true)
     }, [modalOpen]);
 
-    useEffect(() => {
-        onToggleForbidDrag()
-    }, [modalOpen])
-
     return (
-        <div className={"canvasImgCard" + (modalOpen ? ' modalOpen' : '')} id={imgIndex}>
-            <div id={imgIndex}>
-                <div className="canvasImgCard__imgContainer" ref={ref} className={'canvasImgCard__draggableImg' + (isDragging ? ' isActive' : '')}>
-                    <img style={{ filter: `brightness(${filterSettings.brightness}) contrast(${filterSettings.contrast}%) invert(${filterSettings.invert}%) grayscale(${filterSettings.grayscale}%)` }} src={imgSrc} alt="..." width="278" height="400" />
+        <div className={"canvasImgCard" + (modalOpen ? ' modalOpen' : '')} data-id={imgIndex}>
+            <div data-id={imgIndex}>
+                <div className="canvasImgCard__imgContainer" ref={ref} className={'canvasImgCard__draggableImg' + (isDragging ? ' isActive' : '')} id={imgIndex}>
+                    <img style={{ filter: `brightness(${filterSettings.brightness}) contrast(${filterSettings.contrast}%) invert(${filterSettings.invert}%) grayscale(${filterSettings.grayscale}%)` }} src={imgSrc} alt="..." width="278" height="400" data-id={imgIndex} />
                 </div>
 
                 <div className="canvasImgCard__btnContainer">

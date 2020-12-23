@@ -1,9 +1,8 @@
-
 import React from 'react';
+import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../../../itemTypes';
 import './DropZone.scss'
-import { useSelector } from 'react-redux'
 
 const DropZone = (props) => {
     const canvasPhotos = useSelector(state => state.canvasPhotos)

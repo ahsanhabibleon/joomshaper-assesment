@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { createUseStyles } from 'react-jss'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeFilter } from '../../../redux/actions/addNewPhotoToCanvasActions'
+import { changeFilter, _handleChangePhoto } from '../../../redux/actions/addNewPhotoToCanvasActions'
 import './PhotoSettings.scss'
 
 const useStyles = createUseStyles({
@@ -27,7 +27,6 @@ function PhotoSettings({ imgIndex, imgSrc, isModalOpen, getModalStatus }) {
     const node = useRef();
     const dispatch = useDispatch();
     const classes = useStyles()
-
     const canvasPhotos = useSelector(state => state.canvasPhotos)
 
     useEffect(() => {
@@ -42,6 +41,10 @@ function PhotoSettings({ imgIndex, imgSrc, isModalOpen, getModalStatus }) {
         };
     }, [open]);
 
+    const handleChangePhoto = () => {
+        dispatch(_handleChangePhoto(true, imgSrc))
+        console.log(imgSrc)
+    }
     const handleClickOutside = e => {
         if (node.current.contains(e.target)) {
             return;
@@ -49,16 +52,14 @@ function PhotoSettings({ imgIndex, imgSrc, isModalOpen, getModalStatus }) {
         setOpen(false);
         getModalStatus(false);
     };
-
     const handleActiveTab = (payload) => {
         setActiveTab(payload)
     }
-
     const changeSettings = (payload, filterType, imgIndex) => {
         dispatch(changeFilter(payload, filterType, imgIndex))
     }
-    return (
 
+    return (
         <div className={classes.photoSettings} ref={node}>
             <div className={classes.tabNav}>
                 <button className={'tabBtn' + (activeTab === 'changeImg' ? ' is-active' : '')} onClick={() => handleActiveTab('changeImg')}>Image</button>
@@ -68,7 +69,7 @@ function PhotoSettings({ imgIndex, imgSrc, isModalOpen, getModalStatus }) {
                 {activeTab === 'changeImg' && (
                     <div className={classes.tabChageImg}>
                         <img className={classes.tabImg} src={imgSrc} alt="..." />
-                        <button className={classes.changeImgBtn}>Change Photo</button>
+                        <button className={classes.changeImgBtn} onClick={handleChangePhoto}>Change Photo</button>
                     </div>
                 )}
 

@@ -13,21 +13,18 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             }
-
         case actions.FETCH_PHOTO_SUCCESS:
             return {
                 loading: false,
                 photos: action.payload,
                 error: ''
             }
-
-        case actions.FETCH_USERS_FAILURE:
+        case actions.FETCH_PHOTO_FAILURE:
             return {
                 loading: false,
                 photos: [],
                 error: action.payload
             }
-
         default:
             return state
     }

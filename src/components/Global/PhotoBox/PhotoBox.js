@@ -25,15 +25,15 @@ const useStyles = createUseStyles({
     }
 })
 
-const Box = ({ name, imgSrc, imgId, imgIndex, imgAlt }) => {
+const Box = ({ name, imgSrc, imgIndex, imgAlt }) => {
     const classes = useStyles()
     const dispatch = useDispatch()
+
     const [{ isDragging }, drag] = useDrag({
         item: { name, type: ItemTypes.BOX },
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
-                // alert(`You dropped ${imgSrc} into ${dropResult.name}!`);
                 dispatch(addNewPhotoToCanvas(imgSrc, imgIndex))
             }
         },

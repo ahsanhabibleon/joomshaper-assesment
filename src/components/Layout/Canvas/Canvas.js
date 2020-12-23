@@ -2,7 +2,6 @@ import React from 'react'
 import DropZone from '../../Global/DropZone/DropZone'
 import PhotoContainer from '../../Global/PhotoContainer/PhotoContainer'
 import { createUseStyles } from 'react-jss'
-// import DropZone from '../../Global/DropZone/DropZone'
 
 const useStyles = createUseStyles({
     canvas: {

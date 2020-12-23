@@ -1,10 +1,4 @@
-
-
 //action types
-export const FETCH_USERS_REQUEST = 'fetchUsersRequest'
-export const FETCH_USERS_SUCCESS = 'fetchUsersSuccess'
-export const FETCH_USERS_FAILURE = 'fetchUsersFailure'
-
 export const FETCH_PHOTO_REQUEST = 'fetchPhotoRequest'
 export const FETCH_PHOTO_SUCCESS = 'fetchPhotoSuccess'
 export const FETCH_PHOTO_FAILURE = 'fetchPhotoFailute'
@@ -18,3 +12,5 @@ export const CHANGE_BRIGHTNESS = 'changeBrightness'
 export const CHANGE_GRAYSCALE = 'changeGrayscale'
 
 export const CHANGE_FILTER = 'changeFilter'
+export const HANDLE_CHANGE_PHOTO = 'handleChangePhoto'
+export const REPLACE_IMG_SRC = 'replaceImgSrc'
