@@ -3,10 +3,14 @@ import { addNewPhotoToCanvas } from '../../../redux/actions/addNewPhotoToCanvasA
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../../itemTypes';
 import { createUseStyles } from 'react-jss'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import './PhotoBox.scss'
 
 const useStyles = createUseStyles({
     photoSingle: {
+        borderRadius: 8,
+        border: '2px solid #DDE2E8',
+        overflow: 'hidden',
         margin: {
             bottom: 10
         },
@@ -14,25 +18,14 @@ const useStyles = createUseStyles({
     },
     figure: {
         margin: 0,
-        borderRadius: 8,
-        border: '2px solid #DDE2E8',
-        overflow: 'hidden'
     },
     img: {
         width: '100%',
         display: 'block'
     }
 })
-const style = {
-    border: '1px dashed gray',
-    backgroundColor: 'white',
-    padding: '0.5rem 1rem',
-    marginRight: '1.5rem',
-    marginBottom: '1.5rem',
-    cursor: 'move',
-    float: 'left',
-};
-const Box = ({ name, imgSrc, imgId, imgAlt }) => {
+
+const Box = ({ name, imgSrc, imgId, imgIndex, imgAlt }) => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [{ isDragging }, drag] = useDrag({
@@ -41,7 +34,7 @@ const Box = ({ name, imgSrc, imgId, imgAlt }) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
                 // alert(`You dropped ${imgSrc} into ${dropResult.name}!`);
-                dispatch(addNewPhotoToCanvas(imgSrc))
+                dispatch(addNewPhotoToCanvas(imgSrc, imgIndex))
             }
         },
         collect: (monitor) => ({
@@ -49,13 +42,11 @@ const Box = ({ name, imgSrc, imgId, imgAlt }) => {
         }),
     });
 
-    const opacity = isDragging ? 0.4 : 1;
-
     return (
-        <div ref={drag} style={{ ...style, opacity }}>
-            <div className={classes.photoSingle}>
+        <div className={classes.photoSingle}>
+            <div ref={drag} className={"boxDraggable" + (isDragging ? ' is-dragging' : '')}>
                 <figure className={classes.figure}>
-                    <img className={classes.img} src={imgSrc} alt={imgAlt} />
+                    <img className={classes.img} src={imgSrc} alt={imgAlt} width="280" height="400" />
                 </figure>
             </div>
         </div>

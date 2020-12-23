@@ -1,0 +1,9 @@
+.boxDraggable {
+  background-color: white;
+  padding: 0;
+  cursor: grab;
+  border-radius: 8px;
+  &.is-dragging {
+    opacity: 0.4;
+  }
+}

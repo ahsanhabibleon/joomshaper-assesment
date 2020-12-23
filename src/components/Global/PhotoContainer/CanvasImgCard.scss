@@ -1,0 +1,59 @@
+.canvasImgCard {
+  position: relative;
+
+  &:hover {
+    .canvasImgCard__btnContainer {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__btnContainer {
+    display: flex;
+    align-items: center;
+    background: rgba(74, 82, 87, 0.8);
+    padding: 1rem 0;
+    border-radius: 2rem;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s;
+  }
+  &__btnSettings {
+    padding: 0 2rem;
+    background: transparent;
+    border: none;
+    display: block;
+    outline: none;
+    cursor: pointer;
+    img {
+      display: block;
+    }
+    &:first-child {
+      border-right: 1px solid white;
+    }
+  }
+  &__imgContainer {
+    width: 100%;
+    max-width: 30rem;
+    img {
+      display: block;
+      width: 100%;
+      height: 400;
+      object-fit: cover;
+    }
+  }
+  &__draggableImg {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px dashed transparent;
+    &.isActive {
+      border-color: gray;
+      img {
+        opacity: 0;
+      }
+    }
+  }
+}

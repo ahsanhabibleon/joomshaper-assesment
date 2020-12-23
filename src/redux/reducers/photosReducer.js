@@ -1,7 +1,7 @@
 import * as actions from '../actions/actionTypes'
 
 const initialState = {
-    loading: false,
+    loading: true,
     photos: [],
     error: ''
 }
@@ -11,7 +11,7 @@ const photoReducer = (state = initialState, action) => {
         case actions.FETCH_PHOTO_REQUEST:
             return {
                 ...state,
-                loading: false
+                loading: true
             }
 
         case actions.FETCH_PHOTO_SUCCESS:

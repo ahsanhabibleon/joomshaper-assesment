@@ -42,7 +42,7 @@ function PhotoBuffet({ galleryPhotos, fetchPhotos }) {
     ) : (
                 <div className={classes.photoBuffet}>
                     { galleryPhotos.photos.map(photo => (
-                        <PhotoBox name="Glass" key={photo.char_id} imgSrc={photo.img} imgAlt={photo.name} imgId={photo.char_id} />
+                        <PhotoBox name="Glass" key={photo.char_id} imgSrc={photo.img} imgAlt={photo.name} imgId={photo.char_id} imgIndex={photo.char_id - 1} />
                     ))}
                 </div>
             )

@@ -3,16 +3,20 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ItemCard } from '../../../itemTypes';
 import { createUseStyles } from 'react-jss'
 import PotoSettings from './PhotoSettings'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { removePhotoFromCanvas } from '../../../redux/actions/addNewPhotoToCanvasActions'
+import './Card.scss'
 
 const useStyles = createUseStyles({
     imgContainer: {
         width: '100%',
-        maxWidth: 300
+        maxWidth: 300,
     },
     img: {
-        width: '100%'
+        width: '100%',
+        height: 400,
+        objectFit: 'cover',
+        display: 'block'
     },
     btnContainer: {
         display: 'flex',
@@ -54,7 +58,7 @@ const useStyles = createUseStyles({
         }
     },
 })
-export const Card = ({ id, imgSrc, index, moveCard }) => {
+export const Card = ({ id, imgSrc, imgIndex, index, moveCard }) => {
     const classes = useStyles()
     const ref = useRef(null);
     const [, drop] = useDrop({
@@ -103,34 +107,40 @@ export const Card = ({ id, imgSrc, index, moveCard }) => {
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
 
     const dispatch = useDispatch()
+
+    const [modalOpen, setModalOpen] = useState(false)
 
     const deletePhoto = (id) => {
         if (window.confirm("Do you realy want to delete this photo?")) {
             dispatch(removePhotoFromCanvas(id))
         }
     }
-    const openPhotoSettings = (id) => {
+
+    const openPhotoSettings = () => {
         setModalOpen(!modalOpen)
     }
-
-    const [modalOpen, setModalOpen] = useState(false)
 
     const setModalStatus = (payload) => {
         setModalOpen(payload)
     }
 
+    const photoFilterReducer = useSelector(state => state.photoFilterReducer)
+
     return (
         <div className={classes.editableImageBlock}>
-            <div className={classes.imgContainer} ref={ref} style={{ opacity }}>
-                <img className={classes.img} src={imgSrc} alt="" />
+            <div>
+                <div ref={ref} className={'draggable-image' + (isDragging ? ' is-active' : '')}>
+                    <div className={classes.imgContainer}>
+                        <img style={{ filter: `brightness(${photoFilterReducer.settings[0].brightness}) contrast(${photoFilterReducer.settings[0].contrast}%) invert(${photoFilterReducer.settings[0].invert}%) grayscale(${photoFilterReducer.settings[0].grayscale}%)` }} className={classes.img} src={imgSrc} alt="..." width="278" height="400" />
+                    </div>
+                </div>
             </div>
             <div className={classes.btnContainer}>
-                <button className={classes.btn} onClick={() => openPhotoSettings(id)}>
+                <button className={classes.btn} onClick={openPhotoSettings}>
                     <img src="/settings.svg" alt="" />
                 </button>
                 <button className={classes.btn} onClick={() => deletePhoto(id)}>
@@ -139,7 +149,7 @@ export const Card = ({ id, imgSrc, index, moveCard }) => {
             </div>
 
             {
-                modalOpen && <PotoSettings isModalOpen={modalOpen} getModalStatus={setModalStatus} />
+                modalOpen && <PotoSettings imgSrc={imgSrc} isModalOpen={modalOpen} getModalStatus={setModalStatus} id={index} />
             }
 
         </div>

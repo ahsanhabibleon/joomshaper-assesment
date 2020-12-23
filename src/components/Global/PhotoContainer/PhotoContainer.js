@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import update from 'immutability-helper';
-import { Card } from './Card';
+import CanvasImgCard from './CanvasImgCard';
 import { useSelector } from 'react-redux'
 
 import { createUseStyles } from 'react-jss'
@@ -8,11 +8,14 @@ import { createUseStyles } from 'react-jss'
 const useStyles = createUseStyles({
     photoContainer: {
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        height: '100%',
+        overflowX: 'hidden',
+        margin: -15
     },
-    sortableCard: {
-        width: "100%",
-        maxWidth: 300,
+    photoSingle: {
+        width: '33.333333%',
+        padding: 15
     },
 })
 const PhotoContainer = () => {
@@ -39,7 +42,8 @@ const PhotoContainer = () => {
         <div className={classes.photoContainer}>
             {cards.map((card, i) =>
                 <div key={card.id} className={classes.photoSingle}>
-                    <Card className={classes.sortableCard} index={i} id={card.id} imgSrc={card.imgSrc} moveCard={moveCard} /></div>
+                    <CanvasImgCard index={i} imgIndex={i} id={card.id} imgSrc={card.imgSrc} filterSettings={card.filterSettings} moveCard={moveCard} />
+                </div>
             )}
         </div>
     );

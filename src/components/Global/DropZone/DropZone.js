@@ -1,11 +1,12 @@
+
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../../../itemTypes';
-const style = {
-    height: '100%',
-    width: '100%'
-};
+import './DropZone.scss'
+import { useSelector } from 'react-redux'
+
 const DropZone = (props) => {
+    const canvasPhotos = useSelector(state => state.canvasPhotos)
     const [{ canDrop, isOver }, drop] = useDrop({
         accept: ItemTypes.BOX,
         drop: () => {
@@ -17,17 +18,21 @@ const DropZone = (props) => {
         }),
     });
     const isActive = canDrop && isOver;
-    let backgroundColor = '#222';
-    if (isActive) {
-        backgroundColor = 'darkgreen';
-    }
-    else if (canDrop) {
-        backgroundColor = 'darkkhaki';
-    }
     return (
-        <div ref={drop} style={style} className={"dropzone " + (isActive ? 'is-active' : '')}>
-            {isActive ? 'Release to drop' : 'Drag a box here'}
-            {props.children}
+        <div ref={drop} className={"dropzone" + (isActive ? ' is-active' : '')}>
+            <div className="dropzone__album-wrapper">
+                {props.children}
+            </div>
+            {canvasPhotos.length > 0 ? (
+                <div className={"dropbox" + (isActive ? ' is-active' : '')}>
+                    Release to drop
+                </div>
+
+            ) : (
+                    <div className="dropbox__initial">
+                        dragg photos here
+                    </div>
+                )}
         </div>
     );
 };

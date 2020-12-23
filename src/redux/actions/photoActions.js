@@ -20,7 +20,6 @@ export const fetchPhotoFailure = error => {
         payload: error
     }
 }
-
 export const fetchPhotos = () => {
     return (dispatch) => {
         dispatch(fetchPhotoRequest);

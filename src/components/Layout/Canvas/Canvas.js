@@ -7,7 +7,6 @@ import { createUseStyles } from 'react-jss'
 const useStyles = createUseStyles({
     canvas: {
         width: '100%',
-        height: '100vh',
         background: "#F4F7FA",
         padding: {
             top: 50,
@@ -19,9 +18,7 @@ const useStyles = createUseStyles({
     canvasInner: {
         background: '#fff',
         borderRadius: 8,
-        padding: 30,
-        height: '100%',
-        overflowX: 'hidden'
+        padding: 35,
     }
 })
 
@@ -31,10 +28,8 @@ function Canvas() {
         <div className={classes.canvas}>
             <div className={classes.canvasInner}>
                 <DropZone>
-
                     <PhotoContainer />
                 </DropZone>
-                {/* <DropZone /> */}
             </div>
         </div>
     )
