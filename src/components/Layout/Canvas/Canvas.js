@@ -1,31 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from "react-redux";
 import DropZone from '../../Global/DropZone/DropZone'
 import PhotoContainer from '../../Global/PhotoContainer/PhotoContainer'
-import { createUseStyles } from 'react-jss'
-
-const useStyles = createUseStyles({
-    canvas: {
-        width: '100%',
-        background: "#F4F7FA",
-        padding: {
-            top: 50,
-            right: 50,
-            bottom: 50,
-            left: 390,
-        }
-    },
-    canvasInner: {
-        background: '#fff',
-        borderRadius: 8,
-        padding: 35,
-    }
-})
+import './Canvas.scss'
 
 function Canvas() {
-    const classes = useStyles()
+    const changePhotoOption = useSelector(state => state.changePhotoOption)
     return (
-        <div className={classes.canvas}>
-            <div className={classes.canvasInner}>
+        <div className={"canvas" + (changePhotoOption.status ? ' photoChangeOptionactive' : '')} >
+            <div className="canvas__inner">
                 <DropZone>
                     <PhotoContainer />
                 </DropZone>

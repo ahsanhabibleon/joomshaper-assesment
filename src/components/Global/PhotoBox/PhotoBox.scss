@@ -7,3 +7,17 @@
     opacity: 0.4;
   }
 }
+.photoSingle {
+  border-radius: 0.8rem;
+  border: 0.2rem solid #dde2e8;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  cursor: grab;
+  figure {
+    margin: 0;
+  }
+  img {
+    display: block;
+    width: 100%;
+  }
+}

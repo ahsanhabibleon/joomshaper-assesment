@@ -8,7 +8,7 @@ const changePhotoReducer = (state = intState, action) => {
     switch (action.type) {
         case actions.HANDLE_CHANGE_PHOTO:
             return {
-                status: true,
+                status: action.payload.status,
                 imgSrc: action.payload.imgSrc
             }
         default:

@@ -9,11 +9,10 @@ const useStyles = createUseStyles({
         display: 'flex',
         flexWrap: 'wrap',
         height: '100%',
-        overflowX: 'hidden',
         margin: -15
     },
     photoSingle: {
-        width: '33.333333%',
+        width: 333,
         padding: 15
     },
 })

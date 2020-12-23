@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { fetchPhotos } from '../../../redux/actions/photoActions'
 import { createUseStyles } from 'react-jss'
 import PhotoBox from '../PhotoBox/PhotoBox'
-import { replaceImgSrc } from '../../../redux/actions/addNewPhotoToCanvasActions'
+import { replaceImgSrc, _handleChangePhoto } from '../../../redux/actions/addNewPhotoToCanvasActions'
+
 
 const useStyles = createUseStyles({
     photoBuffet: {
@@ -28,7 +29,7 @@ const useStyles = createUseStyles({
     img: {
         width: '100%',
         display: 'block'
-    }
+    },
 })
 
 function PhotoBuffet({ galleryPhotos, fetchPhotos }) {
@@ -47,6 +48,7 @@ function PhotoBuffet({ galleryPhotos, fetchPhotos }) {
 
     const addChangePhotoEventListener = (e) => {
         dispatch(replaceImgSrc(changePhotoOption.imgSrc, e.target.src))
+        dispatch(_handleChangePhoto(false, changePhotoOption.imgSrc))
     }
     const addEventListenerToBuffet = () => {
         changePhotoOption.status === true ? (

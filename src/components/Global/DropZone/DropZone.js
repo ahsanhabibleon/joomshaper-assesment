@@ -19,17 +19,26 @@ const DropZone = (props) => {
     const isActive = canDrop && isOver;
     return (
         <div ref={drop} className={"dropzone" + (isActive ? ' is-active' : '')}>
-            <div className="dropzone__album-wrapper">
-                {props.children}
-            </div>
+
             {canvasPhotos.length > 0 ? (
-                <div className={"dropbox" + (isActive ? ' is-active' : '')}>
-                    Release to drop
-                </div>
+                <>
+                    <div className="dropzone__album-wrapper">
+                        {props.children}
+                    </div>
+                    <div className={"dropbox" + (isActive ? ' is-active' : '')}>
+                        <div className="dropbox__imgContainer">
+                            <img src="/img/dropzone-icon.svg" alt="..." />
+                        </div>
+                        <p>Release to drop</p>
+                    </div>
+                </>
 
             ) : (
-                    <div className="dropbox__initial">
-                        dragg photos here
+                    <div className={"dropbox__initial" + (isActive ? ' is-active' : '')}>
+                        <div className="dropbox__imgContainer">
+                            <img src="/img/dropzone-icon.svg" alt="..." />
+                        </div>
+                        <p>Drop an image from Media Panel</p>
                     </div>
                 )}
         </div>

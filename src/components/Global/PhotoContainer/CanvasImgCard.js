@@ -73,18 +73,18 @@ const CanvasImgCard = ({ id, imgSrc, filterSettings, imgIndex, index, moveCard }
     }, [modalOpen]);
 
     return (
-        <div className={"canvasImgCard" + (modalOpen ? ' modalOpen' : '')} data-id={imgIndex}>
-            <div data-id={imgIndex}>
-                <div className="canvasImgCard__imgContainer" ref={ref} className={'canvasImgCard__draggableImg' + (isDragging ? ' isActive' : '')} id={imgIndex}>
+        <div className={"canvasImgCard" + (modalOpen ? ' modalOpen' : '')}>
+            <div>
+                <div ref={ref} className={'canvasImgCard__draggableImg' + (isDragging ? ' isActive' : '')} id={imgIndex}>
                     <img style={{ filter: `brightness(${filterSettings.brightness}) contrast(${filterSettings.contrast}%) invert(${filterSettings.invert}%) grayscale(${filterSettings.grayscale}%)` }} src={imgSrc} alt="..." width="278" height="400" data-id={imgIndex} />
                 </div>
 
-                <div className="canvasImgCard__btnContainer">
+                <div className={"canvasImgCard__btnContainer" + (modalOpen ? ' isActive' : '')}>
                     <button className="canvasImgCard__btnSettings" onClick={openPhotoSettings}>
-                        <img src="/settings.svg" alt="" />
+                        <img src="/img/settings.svg" alt="" />
                     </button>
-                    <button className="canvasImgCard__btnSettings" onClick={() => deletePhoto(id)}>
-                        <img src="/delete.svg" alt="" />
+                    <button className={"canvasImgCard__btnSettings" + (modalOpen ? ' disabled' : '')} onClick={() => deletePhoto(id)}>
+                        <img src="/img/delete.svg" alt="" />
                     </button>
                 </div>
                 {
