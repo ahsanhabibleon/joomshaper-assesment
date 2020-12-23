@@ -64,32 +64,26 @@
     }
   }
 }
-
+// Range Slider styles
 input[type="range"] {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 15rem; /* Specific width is required for Firefox. */
+  -webkit-appearance: none;
+  width: 15rem;
   background: transparent;
-  margin: 20px 0; /* Otherwise white in Chrome */
+  margin: 20px 0;
 }
-
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
-
 input[type="range"]:focus {
-  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  outline: none;
 }
-
 input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
-
-  /* Hides the slider so custom styles can be added */
   background: transparent;
   border-color: transparent;
   color: transparent;
 }
-/* Special styling for WebKit/Blink */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 2px solid #a1a6aa;
@@ -100,8 +94,6 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   margin-top: -6px;
 }
-
-/* All the same stuff for Firefox */
 input[type="range"]::-moz-range-thumb {
   -moz-appearance: none;
   border: 2px solid #a1a6aa;
@@ -111,8 +103,6 @@ input[type="range"]::-moz-range-thumb {
   background: #ffffff;
   cursor: pointer;
 }
-
-/* All the same stuff for IE */
 input[type="range"]::-ms-thumb {
   -ms-appearance: none;
   border: 2px solid #a1a6aa;
@@ -131,11 +121,9 @@ input[type="range"]::-webkit-slider-runnable-track {
   background: #a1a6aa;
   border-radius: 0.6rem;
 }
-
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #35aef2;
 }
-
 input[type="range"]::-moz-range-track {
   width: 100%;
   height: 0.6rem;
@@ -143,7 +131,6 @@ input[type="range"]::-moz-range-track {
   background: #a1a6aa;
   border-radius: 0.6rem;
 }
-
 input[type="range"]::-ms-track {
   width: 100%;
   height: 0.6rem;

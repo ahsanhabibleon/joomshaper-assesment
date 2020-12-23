@@ -10,7 +10,7 @@ import { replaceImgSrc, _handleChangePhoto } from '../../../redux/actions/addNew
 const useStyles = createUseStyles({
     photoBuffet: {
         width: '100%',
-        height: '100%',
+        height: 'calc(100% - 98px)',
         overflowX: 'hidden',
         padding: '0 2rem'
     },

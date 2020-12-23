@@ -60,7 +60,7 @@ function PhotoSettings({ imgIndex, imgSrc, isModalOpen, getModalStatus }) {
                             <label htmlFor="invert"><img src="/img/invert.svg" alt="" /></label>
                             <input type="range" id="invert" onChange={(e) => changeSettings(e.target.value, 'invert', imgIndex)} value={canvasPhotos[imgIndex].filterSettings.invert} min="0" max="100" step="1" />
                             <div className="filterVal">
-                                {canvasPhotos[imgIndex].filterSettings.invert} dmp
+                                {canvasPhotos[imgIndex].filterSettings.invert} %
                             </div>
                         </div>
 
