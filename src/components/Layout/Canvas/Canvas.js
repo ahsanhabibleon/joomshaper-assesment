@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from "react-redux";
 import DropZone from '../../Global/DropZone/DropZone'
 import PhotoContainer from '../../Global/PhotoContainer/PhotoContainer'
@@ -7,7 +7,7 @@ import './Canvas.scss'
 function Canvas() {
     const changePhotoOption = useSelector(state => state.changePhotoOption)
     return (
-        <div className={"canvas" + (changePhotoOption.status ? ' photoChangeOptionactive' : '')} >
+        <div className={"canvas" + (changePhotoOption.status ? ' photoChangeOptionactive' : '')} data-test="Canvas">
             <div className="canvas__inner">
                 <DropZone>
                     <PhotoContainer />

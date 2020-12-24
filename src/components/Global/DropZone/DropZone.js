@@ -18,7 +18,7 @@ const DropZone = (props) => {
     });
     const isActive = canDrop && isOver;
     return (
-        <div ref={drop} className={"dropzone" + (isActive ? ' is-active' : '')}>
+        <div data-test="DropZone" ref={drop} className={"dropzone" + (isActive ? ' is-active' : '')}>
 
             {canvasPhotos.length > 0 ? (
                 <>

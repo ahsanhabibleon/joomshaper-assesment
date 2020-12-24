@@ -29,8 +29,8 @@ const useStyles = createUseStyles({
 function LeftSidebar() {
     const classes = useStyles();
     return (
-        <div className={classes.leftSidebar}>
-            <h3 className={classes.title}>Media Panel</h3>
+        <div className={classes.leftSidebar} data-test="leftSidebar">
+            <h3 className={classes.title} data-test="leftSidebarTitle">Media Panel</h3>
             <PhotoBuffet />
         </div>
     )
